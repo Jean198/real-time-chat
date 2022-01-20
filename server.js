@@ -1,13 +1,21 @@
 const express=require('express')
 const path=require('path')
 const socket=require('socket.io')
+const http= require('http')
 const formatMessage=require('./utils/messages')
+const hostname = 'localhost';
+const port = 80;
 
 const app=express()
-const server=app.listen(80, ()=>{
-    console.log('listening on port 3000')
-})
-const io = socket(server)
+const server = http.createServer(app);
+const io = require('socket.io')(server);
+
+server.listen(port, hostname, function (err) {
+    if (err) {
+      throw err;
+    }
+    console.log('server listening on: ', hostname, ':', port);
+  });
 
 app.use(express.static(path.join(__dirname, '/public')));
 
