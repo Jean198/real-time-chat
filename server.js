@@ -4,7 +4,7 @@ const socket=require('socket.io')
 const formatMessage=require('./utils/messages')
 
 const app=express()
-const server=app.listen(3000, ()=>{
+const server=app.listen(80, ()=>{
     console.log('listening on port 3000')
 })
 const io = socket(server)
